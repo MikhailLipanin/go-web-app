@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/MikhailLipanin/go-web-app/pkg/config"
-	"github.com/MikhailLipanin/go-web-app/pkg/handlers"
-	"github.com/MikhailLipanin/go-web-app/pkg/render"
+	"github.com/MikhailLipanin/how2amuse/pkg/config"
+	"github.com/MikhailLipanin/how2amuse/pkg/handlers"
+	"github.com/MikhailLipanin/how2amuse/pkg/render"
 	"github.com/alexedwards/scs/v2"
 	"log"
 	"net/http"

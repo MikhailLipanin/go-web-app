@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"github.com/MikhailLipanin/go-web-app/pkg/config"
-	"github.com/MikhailLipanin/go-web-app/pkg/models"
-	"github.com/MikhailLipanin/go-web-app/pkg/render"
+	"github.com/MikhailLipanin/how2amuse/pkg/config"
+	"github.com/MikhailLipanin/how2amuse/pkg/models"
+	"github.com/MikhailLipanin/how2amuse/pkg/render"
 	"net/http"
 )
 

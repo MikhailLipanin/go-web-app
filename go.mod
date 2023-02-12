@@ -1,4 +1,4 @@
-module github.com/MikhailLipanin/go-web-app
+module github.com/MikhailLipanin/how2amuse
 
 go 1.19
 

@@ -3,8 +3,8 @@ package render
 import (
 	"bytes"
 	"fmt"
-	"github.com/MikhailLipanin/go-web-app/pkg/config"
-	"github.com/MikhailLipanin/go-web-app/pkg/models"
+	"github.com/MikhailLipanin/how2amuse/pkg/config"
+	"github.com/MikhailLipanin/how2amuse/pkg/models"
 	"html/template"
 	"log"
 	"net/http"

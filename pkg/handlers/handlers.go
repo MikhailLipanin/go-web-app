@@ -7,6 +7,7 @@ import (
 	"github.com/MikhailLipanin/how2amuse/pkg/render"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 // Repo the repository used by the handlers
@@ -49,15 +50,35 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 // Catalog page handler
 func (m *Repository) Catalog(w http.ResponseWriter, r *http.Request) {
-	data := make(map[string]any)
-	reg, err := m.DB.GetRegions()
+	regions, err := m.DB.GetRegions()
 	if err != nil {
 		log.Fatal(err)
 	}
-	data["test"] = reg
-
+	cities, err := m.DB.GetCities()
+	if err != nil {
+		log.Fatal(err)
+	}
 	// send the data to the template
 	render.RenderTemplate(w, "catalog.page.html", &models.TemplateData{
-		Data: data,
+		Regions: regions,
+		Cities:  cities,
+	})
+
+}
+
+// City page handler
+func (m *Repository) City(w http.ResponseWriter, r *http.Request) {
+	city, err := strconv.Atoi(r.URL.Query().Get("city"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	places, err := m.DB.GetPlaces()
+	if err != nil {
+		log.Fatal(err)
+	}
+	// send the data to the template
+	render.RenderTemplate(w, "city.page.html", &models.TemplateData{
+		CityID: city,
+		Places: places,
 	})
 }

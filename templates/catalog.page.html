@@ -1,11 +1,46 @@
 {{template "base" .}}
 
 {{define "content"}}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{index .Data.test}}
-            </div>
-        </div>
-    </div>
+
+    <br>
+    {{$cur := .}}
+    <ul>
+        {{range $region := .Regions}}
+            <li>
+                <h3>{{$region.Name}}</h3>
+                <img src="{{$region.ImgHref}}" width="700" height="500" class="img-fluid img-thumbnail mx-auto d-block page-image" alt="image">
+                <table class="table table-bordered">
+                    <thead>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    <tr>
+                        <td><h6>Количество городов:</h6></td>
+                        <td>{{$region.CityCount}}</td>
+                    </tr>
+                    <tr>
+                        <td><h6>Площадь:</h6></td>
+                        <td>{{$region.Area}} км²</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"><h6>Страна:</h6></td>
+                        <td>{{$region.Country}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>Интересные места в городах:</h4>
+                <ul>
+                    {{range $city := $cur.Cities}}
+                        {{if eq $city.RegionID $region.ID}}
+
+                            <li><a id="" href="/city?city={{$city.ID}}">{{$city.Name}}</a></li>
+                        {{end}}
+                    {{end}}
+                </ul>
+                <br>
+                <br>
+            </li>
+        {{end}}
+    </ul>
+
 {{end}}

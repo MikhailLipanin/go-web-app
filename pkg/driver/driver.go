@@ -84,13 +84,87 @@ func (m *DB) GetRegions() ([]models.Region, error) {
 			&region.Country,
 			&region.ID,
 			&region.CityCount,
+			&region.Area,
 			&region.Name,
-			&region.Name,
+			&region.ImgHref,
 		)
 		if err != nil {
 			return ret, err
 		}
 		ret = append(ret, region)
+	}
+	if err = rows.Err(); err != nil {
+		return ret, err
+	}
+
+	return ret, nil
+}
+
+// GetCities gets all cities
+func (m *DB) GetCities() ([]models.City, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	query := `
+		select * from city
+		`
+
+	rows, err := m.SQL.QueryContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	var ret []models.City
+
+	for rows.Next() {
+		var city models.City
+		err := rows.Scan(
+			&city.ID,
+			&city.RegionID,
+			&city.Name,
+			&city.Population,
+			&city.TimeZone,
+			&city.ImgHref,
+		)
+		if err != nil {
+			return ret, err
+		}
+		ret = append(ret, city)
+	}
+	if err = rows.Err(); err != nil {
+		return ret, err
+	}
+
+	return ret, nil
+}
+
+// GetPlaces gets all cities
+func (m *DB) GetPlaces() ([]models.Place, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	query := `
+		select * from place
+		`
+
+	rows, err := m.SQL.QueryContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	var ret []models.Place
+
+	for rows.Next() {
+		var place models.Place
+		err := rows.Scan(
+			&place.ID,
+			&place.CityID,
+			&place.Name,
+			&place.Description,
+			&place.ImgHref,
+		)
+		if err != nil {
+			return ret, err
+		}
+		ret = append(ret, place)
 	}
 	if err = rows.Err(); err != nil {
 		return ret, err

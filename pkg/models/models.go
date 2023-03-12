@@ -7,6 +7,7 @@ type Region struct {
 	Area      int
 	Country   string
 	Name      string
+	ImgHref   string
 }
 
 // City is the city model
@@ -16,6 +17,7 @@ type City struct {
 	Population int
 	TimeZone   string
 	Name       string
+	ImgHref    string
 }
 
 // Place is the place model

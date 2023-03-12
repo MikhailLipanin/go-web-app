@@ -1,0 +1,28 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <br>
+    <ul>
+        {{range $place := .Places}}
+            {{if eq $place.CityID $.CityID}}
+                <li>
+                    <h3>{{$place.Name}}</h3>
+                    <img src="{{$place.ImgHref}}" width="700" height="500" class="img-fluid img-thumbnail mx-auto d-block page-image" alt="image">
+                    <table class="table table-bordered">
+                        <thead>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        <tr>
+                            <td colspan="1"><h6>Описание:</h6></td>
+                            <td>{{$place.Description}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <br>
+                </li>
+            {{end}}
+        {{end}}
+    </ul>
+{{end}}
